@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>HeartSync • Find Your Match</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     body {
       font-family: 'Inter', sans-serif;
@@ -33,6 +34,13 @@
       background: linear-gradient(45deg, #ff758c, #ff7eb3, #8e44ad);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo i {
+      font-size: 1.2em;
     }
 
     nav ul {
@@ -102,6 +110,10 @@
       font-weight: 600;
       transition: all 0.3s;
       box-shadow: 0 4px 10px rgba(142, 68, 173, 0.25);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 30px;
     }
 
     .cta-button:hover {
@@ -127,6 +139,10 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       margin-bottom: 10px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .feature h3 {
@@ -142,7 +158,6 @@
       margin: 0;
     }
 
-    /* Trust badge with emoji */
     .trust-badge {
       text-align: center;
       margin-top: 25px;
@@ -161,7 +176,6 @@
       -webkit-text-fill-color: transparent;
     }
 
-    /* Card Layout - Centered Cards in Right Section */
     .right-side {
       flex: 1;
       display: flex;
@@ -189,7 +203,6 @@
       cursor: pointer;
     }
 
-    /* Improved card positioning - more balanced and visually appealing */
     .card-container:nth-child(1) {
       background: #b388ff;
       transform: rotate(-5deg);
@@ -214,7 +227,6 @@
       z-index: 1;
     }
 
-    /* Hover effects for cards */
     .card-container:hover {
       transform: scale(1.05) rotate(0deg);
       z-index: 10;
@@ -260,7 +272,6 @@
         width: 160px;
         height: 220px;
       }
-      /* Adjusted card positioning for mobile */
       .card-container:nth-child(1) {
         transform: rotate(-5deg);
         top: 0;
@@ -281,7 +292,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">HeartSync 💞</div>
+    <div class="logo"><i class="fas fa-heart"></i> HeartSync</div>
     <nav>
       <ul>
         <li><a href="#home">Home</a></li>
@@ -295,30 +306,30 @@
 
   <section class="main-content">
     <div class="left-side">
-      <h1>We've Found <span class="gradient">Matches Near You</span> 💌</h1>
+      <h1>We've Found <span class="gradient">Matches Near You</span> <i class="fas fa-envelope"></i></h1>
       <p>People nearby share your passions and interests — discover who's waiting to meet you!</p>
-      <button class="cta-button">Start Connecting Now 💞</button>
+      <button class="cta-button"><i class="fas fa-user-plus"></i> Start Connecting Now</button>
 
       <div class="features">
         <div class="feature">
-          <div class="feature-icon">👥</div>
+          <div class="feature-icon"><i class="fas fa-users"></i></div>
           <h3>10k+ Members</h3>
           <p>Join a growing community of singles</p>
         </div>
         <div class="feature">
-          <div class="feature-icon">🤖</div>
+          <div class="feature-icon"><i class="fas fa-robot"></i></div>
           <h3>Smart AI</h3>
           <p>We find your most compatible matches</p>
         </div>
         <div class="feature">
-          <div class="feature-icon">💕</div>
+          <div class="feature-icon"><i class="fas fa-star"></i></div>
           <h3>Real Connections</h3>
           <p>Thousands of successful matches made</p>
         </div>
       </div>
 
       <div class="trust-badge">
-        <span class="icon">🛡️</span>
+        <span class="icon"><i class="fas fa-shield-alt"></i></span>
         <span>Trusted by thousands — Verified Members Worldwide</span>
       </div>
     </div>
