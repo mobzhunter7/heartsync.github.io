@@ -158,6 +158,7 @@
       margin: 0;
     }
 
+    /* Trust badge with icon */
     .trust-badge {
       text-align: center;
       margin-top: 25px;
@@ -176,6 +177,7 @@
       -webkit-text-fill-color: transparent;
     }
 
+    /* Card Layout - Centered Cards in Right Section */
     .right-side {
       flex: 1;
       display: flex;
@@ -203,6 +205,7 @@
       cursor: pointer;
     }
 
+    /* Improved card positioning - more balanced and visually appealing */
     .card-container:nth-child(1) {
       background: #b388ff;
       transform: rotate(-5deg);
@@ -227,6 +230,7 @@
       z-index: 1;
     }
 
+    /* Hover effects for cards */
     .card-container:hover {
       transform: scale(1.05) rotate(0deg);
       z-index: 10;
@@ -242,6 +246,20 @@
     .content-locker {
       text-align: center;
       padding: 60px 20px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .content-locker h2 {
+      font-size: 2.2em;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    .content-locker p {
+      font-size: 1.1em;
+      color: #555;
+      margin-bottom: 30px;
     }
 
     footer {
@@ -272,6 +290,7 @@
         width: 160px;
         height: 220px;
       }
+      /* Adjusted card positioning for mobile */
       .card-container:nth-child(1) {
         transform: rotate(-5deg);
         top: 0;
@@ -308,7 +327,7 @@
     <div class="left-side">
       <h1>We've Found <span class="gradient">Matches Near You</span> <i class="fas fa-envelope"></i></h1>
       <p>People nearby share your passions and interests — discover who's waiting to meet you!</p>
-      <button class="cta-button"><i class="fas fa-user-plus"></i> Start Connecting Now</button>
+      <button class="cta-button" id="unlockButton"><i class="fas fa-user-plus"></i> Start Connecting Now</button>
 
       <div class="features">
         <div class="feature">
@@ -355,12 +374,48 @@
     </div>
   </section>
 
-  <section class="content-locker">
-    <!-- OGAds Content Locker Script Goes Here -->
+  <section class="content-locker" id="contentLockerSection">
+    <h2>Unlock Your Matches</h2>
+    <p>Complete a quick offer to view your personalized matches and start connecting!</p>
+    <!-- Content locker will appear here after clicking the CTA button -->
+    <div id="contentLockerContainer"></div>
   </section>
 
   <footer>
     <p>© 2025 HeartSync. All rights reserved.</p>
   </footer>
+
+  <!-- Content Locker Script -->
+  <script type="text/javascript" src="https://playabledownloads.com/script_include.php?id=1853894"></script>
+  
+  <script>
+    // Initialize the content locker
+    document.addEventListener('DOMContentLoaded', function() {
+      // Hide the content locker section initially
+      document.getElementById('contentLockerSection').style.display = 'none';
+      
+      // Add click event to the CTA button
+      document.getElementById('unlockButton').addEventListener('click', function() {
+        // Show the content locker section
+        document.getElementById('contentLockerSection').style.display = 'block';
+        
+        // Scroll to the content locker
+        document.getElementById('contentLockerSection').scrollIntoView({ 
+          behavior: 'smooth' 
+        });
+        
+        // Initialize the content locker (if not auto-initialized)
+        try {
+          // This depends on how the content locker script works
+          // Some content lockers auto-initialize, others need manual trigger
+          if (typeof contentLockerInit !== 'undefined') {
+            contentLockerInit();
+          }
+        } catch (e) {
+          console.log('Content locker initialization:', e);
+        }
+      });
+    });
+  </script>
 </body>
 </html>
