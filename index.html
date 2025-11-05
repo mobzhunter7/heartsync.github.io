@@ -247,7 +247,10 @@
       text-align: center;
       padding: 60px 20px;
       max-width: 800px;
-      margin: 0 auto;
+      margin: 40px auto;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 25px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
       display: none;
     }
 
@@ -261,6 +264,58 @@
       font-size: 1.1em;
       color: #555;
       margin-bottom: 30px;
+    }
+
+    .cpa-offers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .cpa-offer {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .cpa-offer:hover {
+      transform: translateY(-5px);
+    }
+
+    .cpa-offer i {
+      font-size: 2em;
+      color: #ff758c;
+      margin-bottom: 15px;
+    }
+
+    .cpa-offer h3 {
+      margin: 0 0 10px 0;
+      color: #333;
+    }
+
+    .cpa-offer p {
+      font-size: 0.9em;
+      color: #666;
+      margin-bottom: 15px;
+    }
+
+    .offer-button {
+      background: linear-gradient(90deg, #ff758c, #ff7eb3);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .offer-button:hover {
+      background: linear-gradient(90deg, #ff7eb3, #ff758c);
     }
 
     footer {
@@ -307,6 +362,9 @@
         top: 40px;
         left: 120px;
       }
+      .cpa-offers {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -328,7 +386,7 @@
     <div class="left-side">
       <h1>We've Found <span class="gradient">Matches Near You</span> <i class="fas fa-envelope"></i></h1>
       <p>People nearby share your passions and interests — discover who's waiting to meet you!</p>
-      <button class="cta-button" onclick="call_locker();"><i class="fas fa-user-plus"></i> Start Connecting Now</button>
+      <button class="cta-button" onclick="showCPALocker()"><i class="fas fa-user-plus"></i> Start Connecting Now</button>
 
       <div class="features">
         <div class="feature">
@@ -377,21 +435,49 @@
 
   <section class="content-locker" id="contentLockerSection">
     <h2>Unlock Your Matches</h2>
-    <p>Complete a quick offer to view your personalized matches and start connecting!</p>
-    <!-- Content locker will appear here after clicking the CTA button -->
-    <div id="contentLockerContainer"></div>
+    <p>Complete one quick offer to view your personalized matches and start connecting!</p>
+    
+    <div class="cpa-offers">
+      <div class="cpa-offer">
+        <i class="fas fa-mobile-alt"></i>
+        <h3>Mobile App Install</h3>
+        <p>Install a free mobile app to continue</p>
+        <button class="offer-button" onclick="completeOffer('mobile')">Complete Offer</button>
+      </div>
+      
+      <div class="cpa-offer">
+        <i class="fas fa-envelope"></i>
+        <h3>Email Submit</h3>
+        <p>Enter your email to verify your account</p>
+        <button class="offer-button" onclick="completeOffer('email')">Complete Offer</button>
+      </div>
+      
+      <div class="cpa-offer">
+        <i class="fas fa-search"></i>
+        <h3>Survey</h3>
+        <p>Complete a quick 2-minute survey</p>
+        <button class="offer-button" onclick="completeOffer('survey')">Complete Offer</button>
+      </div>
+      
+      <div class="cpa-offer">
+        <i class="fas fa-shopping-cart"></i>
+        <h3>Free Trial</h3>
+        <p>Start a free trial to unlock matches</p>
+        <button class="offer-button" onclick="completeOffer('trial')">Complete Offer</button>
+      </div>
+    </div>
+    
+    <div id="cpaContainer">
+      <!-- CPAgrip content will load here -->
+    </div>
   </section>
 
   <footer>
     <p>© 2025 HeartSync. All rights reserved.</p>
   </footer>
 
-  <!-- Content Locker Script -->
-  <script type="text/javascript" src="https://playabledownloads.com/script_include.php?id=1853894"></script>
-  
   <script>
-    // Function to call the content locker
-    function call_locker() {
+    function showCPALocker() {
       // Show the content locker section
       document.getElementById('contentLockerSection').style.display = 'block';
       
@@ -400,17 +486,43 @@
         behavior: 'smooth' 
       });
       
-      // Initialize the content locker (if not auto-initialized)
-      try {
-        // This depends on how the content locker script works
-        // Some content lockers auto-initialize, others need manual trigger
-        if (typeof contentLockerInit !== 'undefined') {
-          contentLockerInit();
-        }
-      } catch (e) {
-        console.log('Content locker initialization:', e);
-      }
+      // Load CPAgrip content (replace with your actual CPAgrip code)
+      loadCPAgripOffers();
+    }
+    
+    function loadCPAgripOffers() {
+      // This is where you would integrate CPAgrip
+      // Replace this with your actual CPAgrip widget code
+      
+      const cpaContainer = document.getElementById('cpaContainer');
+      cpaContainer.innerHTML = `
+        <div style="text-align: center; margin-top: 30px; padding: 20px; background: #f8f9fa; border-radius: 10px;">
+          <h3>CPA Offers Loading...</h3>
+          <p>Your CPAgrip offers will appear here</p>
+          <p><small>Replace this section with your CPAgrip widget code</small></p>
+        </div>
+      `;
+    }
+    
+    function completeOffer(type) {
+      alert(`Thank you for completing the ${type} offer! Redirecting to your matches...`);
+      // In a real implementation, this would verify completion and redirect
+      setTimeout(() => {
+        window.location.href = 'https://your-dating-site.com/matches'; // Replace with your actual URL
+      }, 2000);
     }
   </script>
+  
+  <!-- 
+    ADD YOUR CPAGRIP CODE HERE:
+    
+    Option 1: Direct Widget Integration
+    <script type="text/javascript" src="https://www.cpagrip.com/script_include.php?id=YOUR_PUBLISHER_ID"></script>
+    
+    Option 2: Custom Widget
+    <iframe src="https://www.cpagrip.com/show_offers.php?pub=YOUR_PUBLISHER_ID&sid=" width="100%" height="600" frameborder="0"></iframe>
+    
+    Replace YOUR_PUBLISHER_ID with your actual CPAgrip publisher ID
+  -->
 </body>
 </html>
