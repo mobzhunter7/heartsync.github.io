@@ -248,6 +248,7 @@
       padding: 60px 20px;
       max-width: 800px;
       margin: 0 auto;
+      display: none;
     }
 
     .content-locker h2 {
@@ -327,7 +328,7 @@
     <div class="left-side">
       <h1>We've Found <span class="gradient">Matches Near You</span> <i class="fas fa-envelope"></i></h1>
       <p>People nearby share your passions and interests — discover who's waiting to meet you!</p>
-      <button class="cta-button" id="unlockButton"><i class="fas fa-user-plus"></i> Start Connecting Now</button>
+      <button class="cta-button" onclick="call_locker();"><i class="fas fa-user-plus"></i> Start Connecting Now</button>
 
       <div class="features">
         <div class="feature">
@@ -389,33 +390,27 @@
   <script type="text/javascript" src="https://playabledownloads.com/script_include.php?id=1853894"></script>
   
   <script>
-    // Initialize the content locker
-    document.addEventListener('DOMContentLoaded', function() {
-      // Hide the content locker section initially
-      document.getElementById('contentLockerSection').style.display = 'none';
+    // Function to call the content locker
+    function call_locker() {
+      // Show the content locker section
+      document.getElementById('contentLockerSection').style.display = 'block';
       
-      // Add click event to the CTA button
-      document.getElementById('unlockButton').addEventListener('click', function() {
-        // Show the content locker section
-        document.getElementById('contentLockerSection').style.display = 'block';
-        
-        // Scroll to the content locker
-        document.getElementById('contentLockerSection').scrollIntoView({ 
-          behavior: 'smooth' 
-        });
-        
-        // Initialize the content locker (if not auto-initialized)
-        try {
-          // This depends on how the content locker script works
-          // Some content lockers auto-initialize, others need manual trigger
-          if (typeof contentLockerInit !== 'undefined') {
-            contentLockerInit();
-          }
-        } catch (e) {
-          console.log('Content locker initialization:', e);
-        }
+      // Scroll to the content locker
+      document.getElementById('contentLockerSection').scrollIntoView({ 
+        behavior: 'smooth' 
       });
-    });
+      
+      // Initialize the content locker (if not auto-initialized)
+      try {
+        // This depends on how the content locker script works
+        // Some content lockers auto-initialize, others need manual trigger
+        if (typeof contentLockerInit !== 'undefined') {
+          contentLockerInit();
+        }
+      } catch (e) {
+        console.log('Content locker initialization:', e);
+      }
+    }
   </script>
 </body>
 </html>
