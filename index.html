@@ -482,7 +482,6 @@
         <li><a href="#home">Home</a></li>
         <li><a href="#features">Features</a></li>
         <li><a href="#contact">Contact</a></li>
-        <!-- Removed Login and Signup buttons -->
       </ul>
     </nav>
   </header>
@@ -576,7 +575,7 @@
         </div>
         
         <div class="survey-buttons">
-          <div></div> <!-- Empty div for spacing -->
+          <div></div>
           <button type="button" class="survey-btn btn-next" onclick="nextStep(2)">Next</button>
         </div>
       </div>
@@ -747,13 +746,49 @@
       document.getElementById('contentLockerSection').style.display = 'block';
       document.getElementById('contentLockerSection').scrollIntoView({ behavior: 'smooth' });
       
-      // Trigger content locker
-      call_locker();
+      // Force content locker to load
+      setTimeout(forceLockerLoad, 1000);
     }
 
-    function call_locker() {
-      // The content locker script should automatically initialize
-      console.log('Content locker triggered after survey completion');
+    function forceLockerLoad() {
+      // Clear the placeholder
+      document.getElementById('lockerContainer').innerHTML = '';
+      
+      // Try to trigger the content locker
+      if (typeof call_locker !== 'undefined') {
+        call_locker();
+      } else {
+        // If call_locker doesn't exist, try to manually load the locker
+        loadLockerManually();
+      }
+    }
+
+    function loadLockerManually() {
+      // Create iframe or script to load the content locker
+      const lockerContainer = document.getElementById('lockerContainer');
+      
+      // Method 1: Try creating an iframe with the locker URL
+      const iframe = document.createElement('iframe');
+      iframe.src = 'https://playabledownloads.com/script_include.php?id=1853894';
+      iframe.style.width = '100%';
+      iframe.style.height = '400px';
+      iframe.style.border = 'none';
+      iframe.style.borderRadius = '12px';
+      lockerContainer.appendChild(iframe);
+      
+      // Method 2: If iframe doesn't work, show alternative message
+      setTimeout(() => {
+        if (!lockerContainer.querySelector('iframe') || lockerContainer.innerHTML.includes('Loading')) {
+          lockerContainer.innerHTML = `
+            <div class="locker-placeholder">
+              <i class="fas fa-exclamation-triangle"></i>
+              <h3>Content Locker Issue</h3>
+              <p>If offers don't appear, please refresh the page or check your ad blocker</p>
+              <button class="survey-btn btn-submit" onclick="location.reload()">Refresh Page</button>
+            </div>
+          `;
+        }
+      }, 3000);
     }
 
     // Initialize page
