@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HeartSync • Find Your Match</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #fff 0%, #fff5f9 30%, #f8f1ff 100%);
+      color: #111;
+      line-height: 1.6;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: rgba(255, 255, 255, 0.9);
+      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .logo {
+      font-size: 1.8em;
+      font-weight: 600;
+      background: linear-gradient(45deg, #ff758c, #ff7eb3, #8e44ad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 25px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #222;
+      font-weight: 500;
+      transition: all 0.3s;
+    }
+
+    nav a:hover {
+      color: #ff758c;
+    }
+
+    .main-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 60px auto;
+      gap: 50px;
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 25px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+      padding: 60px;
+    }
+
+    .left-side {
+      flex: 1;
+    }
+
+    .left-side h1 {
+      font-size: 3em;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 10px;
+    }
+
+    .left-side h1 .gradient {
+      background: linear-gradient(90deg, #ff758c, #ff7eb3, #8e44ad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .left-side p {
+      font-size: 1.1em;
+      color: #555;
+      margin-bottom: 40px;
+    }
+
+    .cta-button {
+      background: linear-gradient(90deg, #ff758c, #ff7eb3, #8e44ad);
+      color: #fff;
+      border: none;
+      padding: 16px 35px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1.1em;
+      text-transform: uppercase;
+      font-weight: 600;
+      transition: all 0.3s;
+      box-shadow: 0 4px 10px rgba(142, 68, 173, 0.25);
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 18px rgba(142, 68, 173, 0.25);
+    }
+
+    .features {
+      display: flex;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .feature {
+      text-align: center;
+      width: 140px;
+    }
+
+    .feature-icon {
+      font-size: 2em;
+      background: linear-gradient(90deg, #ff758c, #ff7eb3, #8e44ad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+
+    .feature h3 {
+      font-size: 1em;
+      font-weight: 700;
+      color: #222;
+      margin: 0 0 6px;
+    }
+
+    .feature p {
+      color: #777;
+      font-size: 0.85em;
+      margin: 0;
+    }
+
+    /* Trust badge with emoji */
+    .trust-badge {
+      text-align: center;
+      margin-top: 25px;
+      font-size: 0.95em;
+      color: #666;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .trust-badge .icon {
+      font-size: 1.2em;
+      background: linear-gradient(90deg, #ff758c, #8e44ad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Card Layout - Centered Cards in Right Section */
+    .right-side {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      height: 420px;
+    }
+
+    .profile-cards {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      height: 350px;
+    }
+
+    .card-container {
+      position: absolute;
+      width: 230px;
+      height: 310px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+      transition: transform 0.4s ease;
+      cursor: pointer;
+    }
+
+    /* Improved card positioning - more balanced and visually appealing */
+    .card-container:nth-child(1) {
+      background: #b388ff;
+      transform: rotate(-5deg);
+      top: 0;
+      left: 0;
+      z-index: 3;
+    }
+
+    .card-container:nth-child(2) {
+      background: #ffb74d;
+      transform: rotate(2deg);
+      top: 20px;
+      left: 80px;
+      z-index: 2;
+    }
+
+    .card-container:nth-child(3) {
+      background: #81c784;
+      transform: rotate(4deg);
+      top: 40px;
+      left: 160px;
+      z-index: 1;
+    }
+
+    /* Hover effects for cards */
+    .card-container:hover {
+      transform: scale(1.05) rotate(0deg);
+      z-index: 10;
+      box-shadow: 0 12px 25px rgba(0, 0, 0, 0.18);
+    }
+
+    .card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .content-locker {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #666;
+      font-size: 0.9em;
+    }
+
+    @media (max-width: 768px) {
+      .main-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+      }
+      .left-side h1 {
+        font-size: 2em;
+      }
+      .features {
+        justify-content: center;
+      }
+      .profile-cards {
+        max-width: 320px;
+        height: 300px;
+      }
+      .card-container {
+        width: 160px;
+        height: 220px;
+      }
+      /* Adjusted card positioning for mobile */
+      .card-container:nth-child(1) {
+        transform: rotate(-5deg);
+        top: 0;
+        left: 0;
+      }
+      .card-container:nth-child(2) {
+        transform: rotate(2deg);
+        top: 20px;
+        left: 60px;
+      }
+      .card-container:nth-child(3) {
+        transform: rotate(4deg);
+        top: 40px;
+        left: 120px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">HeartSync 💞</div>
+    <nav>
+      <ul>
+        <li><a href="#home">Home</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#login">Login</a></li>
+        <li><a href="#signup">Signup Now</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="main-content">
+    <div class="left-side">
+      <h1>We've Found <span class="gradient">Matches Near You</span> 💌</h1>
+      <p>People nearby share your passions and interests — discover who's waiting to meet you!</p>
+      <button class="cta-button">Start Connecting Now 💞</button>
+
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">👥</div>
+          <h3>10k+ Members</h3>
+          <p>Join a growing community of singles</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🤖</div>
+          <h3>Smart AI</h3>
+          <p>We find your most compatible matches</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">💕</div>
+          <h3>Real Connections</h3>
+          <p>Thousands of successful matches made</p>
+        </div>
+      </div>
+
+      <div class="trust-badge">
+        <span class="icon">🛡️</span>
+        <span>Trusted by thousands — Verified Members Worldwide</span>
+      </div>
+    </div>
+
+    <div class="right-side">
+      <div class="profile-cards">
+        <div class="card-container">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=500" alt="Person 1" />
+          </div>
+        </div>
+        <div class="card-container">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=500" alt="Person 2" />
+          </div>
+        </div>
+        <div class="card-container">
+          <div class="card">
+            <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=500" alt="Person 3" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="content-locker">
+    <!-- OGAds Content Locker Script Goes Here -->
+  </section>
+
+  <footer>
+    <p>© 2025 HeartSync. All rights reserved.</p>
+  </footer>
+</body>
+</html>
